@@ -2,13 +2,21 @@
 
 Идея: создание сайта для учета донорства крови и распределения этой крови по партиям с учетом группы и резус фактора
 
+<<<<<<< HEAD
 Стек: Java, PostrgeSQL, FastAPI, Java Collections Framework, Spring
+=======
+Стек: Java, PostgreSQL, FastAPI, Java Collections Framework, Spring
+>>>>>>> b7f1f7d4ae2400a9589b6cd0fe3bb59e04b2f0e9
 
 Цель: Научиться работать с языком Java и нормально сдать проект преподавателю
 
 Сроки реализации:
 1. Console UI - до 30 сентября
+<<<<<<< HEAD
 2. JavaFX - до 31 октября
+=======
+2. JavaFx - до 31 октября
+>>>>>>> b7f1f7d4ae2400a9589b6cd0fe3bb59e04b2f0e9
 3. Spring + REST API - до 30 ноября
 4. Android - до 31 декабря
 
