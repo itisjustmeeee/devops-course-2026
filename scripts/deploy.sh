@@ -71,7 +71,7 @@ if ! rsync "${RSYNC_OPTS[@]}" \
     -e "$RSYNC_RSH" \
     "$LOCAL_DIR" \
     "${REMOTE}:${REMOTE_DIR}/"; then
-    echo "Ошибка: доставка через rsync завершилась неудачно" >$2
+    echo "Ошибка: доставка через rsync завершилась неудачно" >&2
     exit 1
 fi
 
