@@ -151,3 +151,15 @@ Status: active
 - права: drwxr-xr-x (755) devops:devops /var/www/devops-site, -rw-r--r-- (644) devops:devops /var/www/devops-site/index.html, -rw-r--r-- (644) root:root /etc/ssl/certs/devops.crt
 - команда формирования сертификата: sudo sh -c 'cat /home/vboxuser/.ssh/devops_vm.pub >> /home/vboxuser/.ssh/authorized_keys'
 - срок действия: notBefore=Oct 18 11:04:06 2026 GMT, notAfter=Oct 18 11:04:06 2027 GMT
+
+## 9. Контейнеризация
+
+- способ установки Docker: containerd.io 2.4.2-2~ubuntu.26.04~resolute, docker-buildx-plugin 0.38.0-1~ubuntu.26.04~resolute, docker-ce 5:29.9.1-1~ubuntu.26.04~resolute, docker-ce-cli 5:29.9.1-1~ubuntu.26.04~resolute, docker-compose-plugin 5.6.0-1~ubuntu.26.04~resolute (официальный репозиторий download.docker.com)
+- версия: Docker version 29.9.1, build dfc520d
+- участники группы docker: docker:x:981:devops
+- расположение проекта на сервере: /home/devops/app
+- расположение файла .env: /home/devops/app/.env
+- права: -rw------- (600)
+- публикуемые порты и адреса: app-app-1, app-db-1, 127.0.0.1:5000, 5432/tcp
+- именованные тома: app_db_data
+- конфигурация обратного прокси-сервера: lrwxrwxrwx 1 root root 38 Oct 18 10:50 devops-site -> /etc/nginx/sites-available/devops-site
