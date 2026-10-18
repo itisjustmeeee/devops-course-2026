@@ -141,3 +141,13 @@ Status: active
 1. 28.09.2026 21:04
 2. 07.10.2026 21:11
 3. 07.10.2026 21:52
+
+## 8. Веб-сервер
+
+- устанавливаемый пакет: nginx 1.28.3-2ubuntu1.11
+- путь к конфигурации реурса: /etc/nginx/nginx.conf
+- путь к сертификату: /etc/ssl/certs/devops.crt
+- путь к ключу: /etc/ssl/private/devops.key
+- права: drwxr-xr-x (755) devops:devops /var/www/devops-site, -rw-r--r-- (644) devops:devops /var/www/devops-site/index.html, -rw-r--r-- (644) root:root /etc/ssl/certs/devops.crt
+- команда формирования сертификата: sudo sh -c 'cat /home/vboxuser/.ssh/devops_vm.pub >> /home/vboxuser/.ssh/authorized_keys'
+- срок действия: notBefore=Oct 18 11:04:06 2026 GMT, notAfter=Oct 18 11:04:06 2027 GMT
