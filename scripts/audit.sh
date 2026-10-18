@@ -53,4 +53,45 @@ check "Права файлов сайта и ключа корректны" \
         fi
     '
 
+# Проверяет, что порты 5000 и 5432 не открыты
+# на адресах, отличных от 127.0.0.1.
+ports_5000_5432_loopback_only() {
+    local sockets
+    local bad_addresses
+
+    sockets="$(ss -tln)" || return 1
+
+    bad_addresses="$(awk '
+        $4 ~ /:(5000|5432)$/ && $4 !~ /^127\.0\.0\.1:/ {
+            print $4
+        }
+    ' <<< "$sockets")"
+
+    if [[ -n "$bad_addresses" ]]; then
+        printf 'Порты опубликованы вне 127.0.0.1:\n%s\n' \
+            "$bad_addresses" >&2
+        return 1
+    fi
+
+    return 0
+}
+
+echo "[5] Контейнеризация"
+
+# а) Служба Docker активна
+check "Служба Docker активна" \
+    systemctl is-active docker
+
+# б) Контейнер PostgreSQL находится в состоянии healthy
+check "Контейнер СУБД app-db-1 имеет статус healthy" \
+    test "$(docker inspect -f '{{.State.Health.Status}}' app-db-1 2>/dev/null)" = healthy
+
+# в) Порты 5000 и 5432 не открыты на внешних интерфейсах
+check "Порты 5000 и 5432 ограничены адресом 127.0.0.1" \
+    ports_5000_5432_loopback_only
+
+# г) Права файла .env равны 600
+check "Права файла ~/app/.env равны 600" \
+    test "$(stat -c '%a' "$HOME/app/.env" 2>/dev/null)" = 600
+
 exit "$CHECK_FAILED"
